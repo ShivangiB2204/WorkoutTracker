@@ -26,6 +26,12 @@
   .display { font-family:'Bebas Neue', sans-serif; }
   .sheet { max-width:1000px; margin:0 auto; background:#fff; min-height:100vh; }
 
+  .pinned {
+    position:sticky; top:0; z-index:10;
+    background:#fff;
+    box-shadow:0 4px 10px -6px rgba(0,0,0,0.18);
+  }
+
   header {
     padding:20px 16px 14px;
     border-bottom:2px solid var(--ink);
@@ -96,6 +102,7 @@
 <body>
 <div class="sheet">
 
+  <div class="pinned">
   <header>
     <div>
       <h1>WORKOUT TRACKER 2026</h1>
@@ -117,6 +124,8 @@
       <div class="dial" id="dial"></div>
     </div>
     <div class="cycle-text" id="cycle-text"></div>
+  </div>
+
   </div>
 
   <div class="grid" id="grid"></div>
