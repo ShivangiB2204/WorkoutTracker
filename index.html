@@ -3,11 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <title>Workout Tracker 2026</title>
 
+<meta name="theme-color" content="#12253f">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#12253f">
+<meta name="apple-mobile-web-app-title" content="Workout Tracker">
+
+<!-- APP ICON -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2312253f'/%3E%3Cpath d='M128 262 L214 348 L392 156' fill='none' stroke='white' stroke-width='44' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2312253f'/%3E%3Cpath d='M128 262 L214 348 L392 156' fill='none' stroke='white' stroke-width='44' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -227,6 +234,7 @@ h1 {
   color: #888;
   line-height: 1;
   margin-bottom: 4px;
+  text-align: center;
 }
 
 .box {
@@ -447,12 +455,12 @@ footer {
   </div>
 
 
-  <!-- ORIGINAL 100-DAY CALENDAR -->
+  <!-- ORIGINAL 100 DAYS -->
 
   <div class="grid" id="grid"></div>
 
 
-  <!-- SECOND 100-DAY CALENDAR -->
+  <!-- SECOND 100 DAYS -->
 
   <div class="period-heading">
     100 DAYS · FROM 16 SEP 2026
@@ -465,7 +473,7 @@ footer {
   <div class="grid" id="grid2"></div>
 
 
-  <!-- ORIGINAL PROGRESS BAR -->
+  <!-- ORIGINAL PROGRESS -->
 
   <div class="progress-wrap">
 
@@ -488,7 +496,7 @@ footer {
   </div>
 
 
-  <!-- SECOND PROGRESS BAR -->
+  <!-- SECOND PROGRESS -->
 
   <div class="progress-wrap">
 
@@ -528,7 +536,6 @@ footer {
 
 <script>
 
-
 /* ============================
    SETTINGS
 ============================ */
@@ -542,7 +549,6 @@ const TOTAL = 100;
 const PT_CYCLE = 12;
 
 const KEY = 'workout-tracker-2026';
-
 
 const DAYS = [
   'Sun','Mon','Tue','Wed','Thu','Fri','Sat'
@@ -560,15 +566,16 @@ const ROMAN = [
 
 
 /* ============================
-   EXISTING WORKOUT RECORDS
+   INITIAL DATA
 ============================ */
 
 /*
-   These are only used if there is
-   no saved data in your browser.
+   Used only if no saved data exists.
 
-   Your saved data is loaded BEFORE
-   the calendars are created.
+   Original tracker was completed
+   through day 100.
+
+   Second tracker starts empty.
 */
 
 const SEED_DONE = Array.from(
@@ -580,11 +587,6 @@ const SEED_PT = [
   3,5,8,10,13,15,20,22,23,25,
   26,27,34,35,39,41,46,48,53,55
 ];
-
-
-/* ============================
-   DATA
-============================ */
 
 let done = new Set(SEED_DONE);
 
@@ -609,30 +611,21 @@ function load(){
 
       const p = JSON.parse(raw);
 
-      /*
-         IMPORTANT FIX:
+      done = new Set(
+        Array.isArray(p.done) ? p.done : []
+      );
 
-         Clear the existing Sets and
-         populate them instead of
-         replacing them.
+      pt = new Set(
+        Array.isArray(p.pt) ? p.pt : []
+      );
 
-         This ensures the calendar
-         buttons and saved data refer
-         to the same Sets.
-      */
+      done2 = new Set(
+        Array.isArray(p.done2) ? p.done2 : []
+      );
 
-      done.clear();
-      pt.clear();
-      done2.clear();
-      pt2.clear();
-
-      (p.done || []).forEach(n => done.add(n));
-
-      (p.pt || []).forEach(n => pt.add(n));
-
-      (p.done2 || []).forEach(n => done2.add(n));
-
-      (p.pt2 || []).forEach(n => pt2.add(n));
+      pt2 = new Set(
+        Array.isArray(p.pt2) ? p.pt2 : []
+      );
 
     }
 
@@ -738,7 +731,6 @@ function buildGrid(
       startDate.getDate()+(i-1)
     );
 
-
     const now = new Date();
 
     now.setHours(0,0,0,0);
@@ -746,7 +738,6 @@ function buildGrid(
     const cellDate = new Date(d);
 
     cellDate.setHours(0,0,0,0);
-
 
     const cell =
       document.createElement('div');
@@ -765,7 +756,6 @@ function buildGrid(
 
       );
 
-
     cell.innerHTML = `
 
       <div class="cell-date">
@@ -775,7 +765,6 @@ function buildGrid(
         ${MONTHS[d.getMonth()]}
 
       </div>
-
 
       <button
 
@@ -797,7 +786,6 @@ function buildGrid(
 
       </button>
 
-
       <button
 
         class="pt"
@@ -816,21 +804,11 @@ function buildGrid(
 
     `;
 
-
     target.appendChild(cell);
 
 
     /* ============================
        WORKOUT BUTTON
-
-       Uses the Set supplied to this
-       calendar.
-
-       Original:
-       done
-
-       Second:
-       done2
     ============================ */
 
     cell.querySelector('.box')
@@ -887,44 +865,29 @@ function buildGrid(
 
 /* ============================
    LOAD BEFORE BUILDING
-
-   IMPORTANT FIX
 ============================ */
 
 load();
 
 
 /* ============================
-   CREATE BOTH CALENDARS
+   CREATE CALENDARS
 ============================ */
 
 buildGrid(
-
   'grid',
-
   START,
-
   0,
-
   done,
-
   pt
-
 );
 
-
 buildGrid(
-
   'grid2',
-
   START2,
-
   100,
-
   done2,
-
   pt2
-
 );
 
 
@@ -943,7 +906,6 @@ function buildProgress(
   const track =
     document.getElementById(trackId);
 
-
   for(let i=0;i<TOTAL;i++){
 
     track.appendChild(
@@ -952,10 +914,8 @@ function buildProgress(
 
   }
 
-
   const ticks =
     document.getElementById(ticksId);
-
 
   for(let i=0;i<=10;i++){
 
@@ -970,7 +930,6 @@ function buildProgress(
 
 }
 
-
 buildProgress('track','ticks');
 
 buildProgress('track2','ticks2');
@@ -982,7 +941,6 @@ buildProgress('track2','ticks2');
 
 const dial =
   document.getElementById('dial');
-
 
 for(let i=0;i<PT_CYCLE;i++){
 
@@ -1005,12 +963,7 @@ for(let i=0;i<PT_CYCLE;i++){
 function render(){
 
 
-  /* ============================
-     PT SEQUENCES
-
-     Separate sequences for both
-     calendars.
-  ============================ */
+  /* PT SEQUENCES */
 
   const ptDays =
     [...pt].sort((a,b)=>a-b);
@@ -1018,11 +971,9 @@ function render(){
   const ptDays2 =
     [...pt2].sort((a,b)=>a-b);
 
-
   const seqMap = {};
 
   const seqMap2 = {};
-
 
   ptDays.forEach((d,i)=>{
 
@@ -1030,7 +981,6 @@ function render(){
       (i % PT_CYCLE)+1;
 
   });
-
 
   ptDays2.forEach((d,i)=>{
 
@@ -1040,48 +990,36 @@ function render(){
   });
 
 
-  /* ============================
-     RENDER BOTH CALENDARS
-  ============================ */
+  /* RENDER BOTH CALENDARS */
 
   for(let n=1;n<=200;n++){
 
-
     const second = n>100;
-
 
     const doneSet =
       second ? done2 : done;
 
-
     const ptSet =
       second ? pt2 : pt;
-
 
     const seq =
       second ? seqMap2 : seqMap;
 
-
     const box =
       document.getElementById('box-'+n);
 
-
     const isDone =
       doneSet.has(n);
-
 
     box.classList.toggle(
       'done',
       isDone
     );
 
-
     const existing =
       box.querySelector('svg');
 
-
     if(isDone && !existing){
-
 
       box.insertAdjacentHTML(
 
@@ -1105,27 +1043,22 @@ function render(){
 
       );
 
-
     }else if(!isDone && existing){
 
       existing.remove();
 
     }
 
-
     const ptBtn =
       document.getElementById('pt-'+n);
 
-
     const isPt =
       ptSet.has(n);
-
 
     ptBtn.classList.toggle(
       'on',
       isPt
     );
-
 
     ptBtn.textContent =
       isPt
@@ -1135,14 +1068,11 @@ function render(){
   }
 
 
-  /* ============================
-     ORIGINAL STATS
-  ============================ */
+  /* ORIGINAL STATS */
 
   let best = 0;
 
   let run = 0;
-
 
   for(let i=1;i<=TOTAL;i++){
 
@@ -1163,10 +1093,8 @@ function render(){
 
   }
 
-
   let anchor =
     today || TOTAL;
-
 
   while(
 
@@ -1180,11 +1108,9 @@ function render(){
 
   }
 
-
   let cur = 0;
 
   let c = anchor;
-
 
   while(
 
@@ -1200,46 +1126,37 @@ function render(){
 
   }
 
-
   const ptTotal =
     ptDays.length;
-
 
   const cyclesDone =
     Math.floor(
       ptTotal/PT_CYCLE
     );
 
-
   const inCycle =
     ptTotal%PT_CYCLE;
-
 
   document.getElementById(
     's-total'
   ).textContent = done.size;
 
-
   document.getElementById(
     's-cur'
   ).textContent = cur;
-
 
   document.getElementById(
     's-best'
   ).textContent = best;
 
-
   document.getElementById(
     's-pt'
   ).textContent = ptTotal;
-
 
   document.getElementById(
     'cycle-label'
   ).textContent =
     'PT cycle '+(cyclesDone+1);
-
 
   [...dial.children].forEach(
 
@@ -1253,7 +1170,6 @@ function render(){
     }
 
   );
-
 
   document.getElementById(
     'cycle-text'
@@ -1284,9 +1200,7 @@ function render(){
   `;
 
 
-  /* ============================
-     FIRST PROGRESS BAR
-  ============================ */
+  /* FIRST PROGRESS BAR */
 
   [
 
@@ -1306,16 +1220,13 @@ function render(){
 
   });
 
-
   document.getElementById(
     'pct'
   ).textContent =
     done.size+'% of the 100 days';
 
 
-  /* ============================
-     SECOND PROGRESS BAR
-  ============================ */
+  /* SECOND PROGRESS BAR */
 
   const done2Count =
     [...done2].filter(
@@ -1323,7 +1234,6 @@ function render(){
       n=>n>=101 && n<=200
 
     ).length;
-
 
   [
 
@@ -1343,16 +1253,13 @@ function render(){
 
   });
 
-
   document.getElementById(
     'pct2'
   ).textContent =
     done2Count+'% of the 100 days';
 
 
-  /* ============================
-     STATUS
-  ============================ */
+  /* STATUS */
 
   document.getElementById(
     'status'
@@ -1403,13 +1310,69 @@ document.getElementById(
 
 
 /* ============================
-   INITIAL RENDER
+   APP MANIFEST
 ============================ */
 
-render();
+const iconSVG = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="90" fill="#12253f"/>
+  <path d="M128 262 L214 348 L392 156"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="44"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
+`;
 
+const iconURL =
+  'data:image/svg+xml;charset=utf-8,' +
+  encodeURIComponent(iconSVG);
 
-</script>
+const manifest = {
 
-</body>
- </html>
+  name: 'Workout Tracker 2026',
+
+  short_name: 'Workout Tracker',
+
+  start_url: './',
+
+  scope: './',
+
+  display: 'standalone',
+
+  background_color: '#ffffff',
+
+  theme_color: '#12253f',
+
+  icons: [
+
+    {
+      src: iconURL,
+      sizes: '512x512',
+      type: 'image/svg+xml',
+      purpose: 'any maskable'
+    }
+
+  ]
+
+};
+
+const link =
+  document.createElement('link');
+
+link.rel = 'manifest';
+
+link.href = URL.createObjectURL(
+
+  new Blob(
+
+    [JSON.stringify(manifest)],
+
+    {type:'application/json'}
+
+  )
+
+);
+
+document.head.appendChi
