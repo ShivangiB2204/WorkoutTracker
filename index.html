@@ -1,27 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workout Tracker 2026</title>
-
 <meta name="theme-color" content="#12253f">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Workout Tracker">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='90' fill='%2312253f'/%3E%3Cpath d='M128 262 L214 348 L392 156' fill='none' stroke='white' stroke-width='44' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2312253f'/%3E%3Cpath d='M20 52 L40 72 L82 25' fill='none' stroke='white' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <style>
-:root {
-  --ink: #12253f;
-  --pen: #1b3a6b;
-  --line: #e5e5e5;
-  --muted: #aaa;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -33,88 +20,82 @@
 body {
   background: #f2f2f2;
   font-family: 'DM Mono', monospace;
-  min-height: 100vh;
+  color: #12253f;
 }
 
 .sheet {
   max-width: 1000px;
-  margin: 0 auto;
-  background: #fff;
+  margin: auto;
+  background: white;
   min-height: 100vh;
 }
 
 header {
-  padding: 26px 28px 18px;
-  border-bottom: 2px solid var(--ink);
+  padding: 28px;
+  border-bottom: 3px solid #12253f;
 }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 42px;
-  letter-spacing: 1.5px;
+  font-size: 44px;
+  letter-spacing: 2px;
   line-height: 1;
-  color: var(--ink);
 }
 
 .sub {
+  color: #aaa;
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--muted);
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .status {
+  color: #aaa;
   font-size: 10px;
   letter-spacing: 1.5px;
-  color: var(--muted);
-  margin-top: 14px;
-  text-transform: uppercase;
+  margin-top: 16px;
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border-bottom: 1px solid var(--line);
 }
 
 .stat {
   padding: 24px 28px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
 }
 
-.stat-label {
+.label {
+  color: #aaa;
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--muted);
   margin-bottom: 8px;
-  text-transform: uppercase;
 }
 
-.stat-val {
+.value {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 54px;
   line-height: 1;
-  color: var(--ink);
 }
 
-.stat-sub {
-  font-size: 12px;
+.small {
   color: #aaa;
-  margin-left: 6px;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 .cycle {
-  padding: 24px 28px;
-  border-bottom: 1px solid var(--line);
+  padding: 26px 28px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.cycle-label {
+.cycle-title {
+  color: #aaa;
   font-size: 12px;
   letter-spacing: 2px;
-  color: var(--muted);
-  margin-bottom: 12px;
-  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
 .dial {
@@ -127,144 +108,135 @@ h1 {
   width: 40px;
   height: 48px;
   border: 1px solid #d4d4d4;
+  color: #bbb;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  color: #bbb;
 }
 
 .seg.on {
-  border-color: var(--pen);
-  background: var(--pen);
+  background: #1b3a6b;
+  border-color: #1b3a6b;
   color: white;
 }
 
 .cycle-text {
-  margin-top: 18px;
-  font-size: 13px;
   color: #777;
+  font-size: 13px;
   line-height: 2;
+  margin-top: 18px;
 }
 
-.cycle-big {
+.cycle-number {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 42px;
-  color: var(--ink);
+  color: #12253f;
 }
 
-.period-heading {
+.heading {
   padding: 28px 28px 8px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #e5e5e5;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 30px;
   letter-spacing: 1.5px;
-  color: var(--ink);
 }
 
-.period-sub {
-  padding: 0 28px 16px;
+.heading-sub {
+  padding: 0 28px 18px;
+  color: #aaa;
   font-size: 11px;
   letter-spacing: 1.5px;
-  color: var(--muted);
-  text-transform: uppercase;
 }
 
-.grid {
-  padding: 16px 18px 24px;
+.calendar {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
-  border-bottom: 1px solid var(--line);
+  padding: 16px 18px 28px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.cell {
-  border: 1px solid var(--line);
+.day {
+  border: 1px solid #e1e1e1;
   padding: 8px 3px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   min-width: 0;
 }
 
-.cell.today {
-  border: 2px solid var(--ink);
+.day.today {
+  border: 2px solid #12253f;
 }
 
-.cell-date {
-  font-size: 10px;
+.date {
   color: #888;
+  font-size: 10px;
   line-height: 1.5;
   margin-bottom: 8px;
-  text-align: center;
   white-space: nowrap;
 }
 
-.box {
+.workout {
   position: relative;
   width: 64px;
   height: 64px;
-  border: 1px solid #bdbdbd;
   background: white;
-  cursor: pointer;
+  border: 1px solid #bbb;
   border-radius: 3px;
-  padding: 0;
+  cursor: pointer;
+  display: block;
+  margin: auto;
   touch-action: manipulation;
 }
 
-.box.done {
-  border-color: var(--pen);
+.workout.done {
+  border-color: #1b3a6b;
 }
 
-.box-num {
+.number {
   position: absolute;
   top: 4px;
   left: 5px;
-  font-size: 10px;
   color: #ccc;
-  line-height: 1;
+  font-size: 10px;
+  z-index: 1;
 }
 
-.box svg {
-  position: absolute;
-  inset: 0;
+.workout svg {
   width: 100%;
   height: 100%;
 }
 
 .tick {
-  stroke: var(--pen);
-  stroke-width: 2.8;
   fill: none;
+  stroke: #1b3a6b;
+  stroke-width: 2.8;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .pt {
   margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: white;
+  color: #bbb;
   font-family: 'DM Mono', monospace;
   font-size: 10px;
-  letter-spacing: 0.5px;
-  border: 1px solid var(--line);
-  color: #bbb;
-  background: white;
-  border-radius: 20px;
-  padding: 5px 9px;
-  line-height: 1;
   cursor: pointer;
   touch-action: manipulation;
-  max-width: 100%;
 }
 
 .pt.on {
-  border-color: var(--pen);
-  background: var(--pen);
+  background: #1b3a6b;
+  border-color: #1b3a6b;
   color: white;
 }
 
-.progress-wrap {
-  padding: 10px 28px 30px;
-  border-top: 1px solid var(--line);
+.progress {
+  padding: 12px 28px 30px;
+  border-top: 1px solid #e5e5e5;
 }
 
 .progress-head {
@@ -277,80 +249,67 @@ h1 {
 
 .progress-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 25px;
+  font-size: 27px;
   letter-spacing: 1.5px;
-  color: var(--ink);
 }
 
-.progress-pct {
+.percent {
+  color: #aaa;
   font-size: 11px;
-  letter-spacing: 1.2px;
-  color: var(--muted);
-  text-transform: uppercase;
+  letter-spacing: 1px;
   text-align: right;
 }
 
-.track {
-  width: 100%;
+.bar {
   height: 38px;
-  border: 3px solid var(--ink);
-  display: flex;
+  border: 3px solid #12253f;
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
   overflow: hidden;
 }
 
-.track div {
-  flex: 1;
-  border-right: 1px solid #eee;
+.bar div {
   background: white;
+  border-right: 1px solid #eee;
 }
 
-.track div.filled {
-  background: var(--pen);
-}
-
-.track div:last-child {
-  border-right: none;
+.bar div.filled {
+  background: #1b3a6b;
 }
 
 .ticks {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
   color: #bbb;
+  font-size: 11px;
   margin-top: 6px;
 }
 
 footer {
   padding: 20px 28px 36px;
-  border-top: 1px solid #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
+  border-top: 1px solid #eee;
 }
 
 .hint {
-  font-size: 10px;
-  letter-spacing: 1.3px;
   color: #ccc;
-  line-height: 1.7;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  line-height: 1.8;
 }
 
 .reset {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1.3px;
-  color: #aaa;
+  color: #999;
   background: none;
   border: none;
   text-decoration: underline;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
   cursor: pointer;
   padding: 10px;
-}
-
-button:focus-visible {
-  outline: 3px solid #6b8dbb;
-  outline-offset: 3px;
 }
 
 @media (min-width: 640px) {
@@ -358,38 +317,29 @@ button:focus-visible {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .grid {
+  .calendar {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .stat {
-    padding: 20px;
   }
 }
 
 @media (min-width: 900px) {
-  .grid {
+  .calendar {
     grid-template-columns: repeat(10, minmax(0, 1fr));
-    padding: 20px 28px 28px;
   }
 
-  .box {
+  .workout {
     width: 58px;
     height: 58px;
-  }
-
-  .cell-date {
-    font-size: 9px;
   }
 }
 
 @media (max-width: 380px) {
   header {
-    padding: 24px 16px 16px;
+    padding: 24px 16px 18px;
   }
 
   h1 {
-    font-size: 32px;
+    font-size: 34px;
   }
 
   .sub {
@@ -397,38 +347,42 @@ button:focus-visible {
   }
 
   .stat {
-    padding: 18px 16px;
+    padding: 20px 16px;
   }
 
-  .stat-val {
-    font-size: 42px;
+  .value {
+    font-size: 44px;
   }
 
-  .stat-label {
+  .label {
     font-size: 9px;
   }
 
-  .period-heading {
-    padding: 24px 16px 8px;
-    font-size: 25px;
+  .cycle {
+    padding: 24px 16px;
   }
 
-  .period-sub {
-    padding: 0 16px 12px;
+  .heading {
+    padding: 26px 16px 8px;
+    font-size: 26px;
+  }
+
+  .heading-sub {
+    padding: 0 16px 16px;
     font-size: 9px;
   }
 
-  .grid {
-    padding: 12px 8px 20px;
+  .calendar {
+    padding: 12px 8px 22px;
     gap: 5px;
   }
 
-  .box {
+  .workout {
     width: 48px;
     height: 48px;
   }
 
-  .cell-date {
+  .date {
     font-size: 8px;
   }
 
@@ -437,19 +391,19 @@ button:focus-visible {
     padding: 4px 6px;
   }
 
-  .progress-wrap {
+  .progress {
     padding: 8px 16px 24px;
   }
 
   .progress-title {
-    font-size: 21px;
+    font-size: 22px;
   }
 
-  .progress-pct {
+  .percent {
     font-size: 9px;
   }
 
-  .track {
+  .bar {
     height: 30px;
   }
 
@@ -471,132 +425,110 @@ button:focus-visible {
 <header>
   <h1>WORKOUT TRACKER 2026</h1>
   <div class="sub">100 DAYS · FROM 08 JUNE 2026</div>
-  <div class="status" id="status">OUTSIDE THE 100 DAYS</div>
+  <div class="status">OUTSIDE THE 100 DAYS</div>
 </header>
 
 <div class="stats">
 
   <div class="stat">
-    <div class="stat-label">Workouts done</div>
-    <div>
-      <span class="stat-val" id="s-total">100</span>
-      <span class="stat-sub">/ 100</span>
-    </div>
+    <div class="label">WORKOUTS DONE</div>
+    <span class="value" id="total">100</span>
+    <span class="small">/ 100</span>
   </div>
 
   <div class="stat">
-    <div class="stat-label">Current streak</div>
-    <div>
-      <span class="stat-val" id="s-cur">100</span>
-      <span class="stat-sub">days</span>
-    </div>
+    <div class="label">CURRENT STREAK</div>
+    <span class="value" id="current">100</span>
+    <span class="small">days</span>
   </div>
 
   <div class="stat">
-    <div class="stat-label">Best streak</div>
-    <div>
-      <span class="stat-val" id="s-best">100</span>
-      <span class="stat-sub">days</span>
-    </div>
+    <div class="label">BEST STREAK</div>
+    <span class="value" id="best">100</span>
+    <span class="small">days</span>
   </div>
 
   <div class="stat">
-    <div class="stat-label">PT sessions</div>
-    <div>
-      <span class="stat-val" id="s-pt" style="color:#1b3a6b">0</span>
-      <span class="stat-sub">total</span>
-    </div>
+    <div class="label">PT SESSIONS</div>
+    <span class="value" id="ptTotal" style="color:#1b3a6b">0</span>
+    <span class="small">total</span>
   </div>
 
 </div>
 
 <div class="cycle">
 
-  <div class="cycle-label" id="cycle-label">PT CYCLE 1</div>
+  <div class="cycle-title" id="cycleTitle">PT CYCLE 1</div>
 
   <div class="dial" id="dial"></div>
 
-  <div class="cycle-text" id="cycle-text"></div>
+  <div class="cycle-text" id="cycleText"></div>
 
 </div>
 
-<!-- ORIGINAL 100 DAYS -->
-
-<div class="period-heading">
+<div class="heading">
   100 DAYS · FROM 08 JUN 2026
 </div>
 
-<div class="period-sub">
+<div class="heading-sub">
   DAYS 1–100 · ORIGINAL CHALLENGE
 </div>
 
-<div class="grid" id="grid"></div>
+<div class="calendar" id="calendar1"></div>
 
-<!-- SECOND 100 DAYS -->
-
-<div class="period-heading">
+<div class="heading">
   100 DAYS · FROM 16 SEP 2026
 </div>
 
-<div class="period-sub">
+<div class="heading-sub">
   DAYS 101–200 · SECOND 100-DAY CHALLENGE
 </div>
 
-<div class="grid" id="grid2"></div>
+<div class="calendar" id="calendar2"></div>
 
-<!-- FIRST PROGRESS BAR -->
-
-<div class="progress-wrap">
+<div class="progress">
 
   <div class="progress-head">
-
-    <span class="progress-title">
-      PROGRESS · 08 JUN
-    </span>
-
-    <span class="progress-pct" id="pct">
-      100% OF THE 100 DAYS
-    </span>
-
+    <span class="progress-title">PROGRESS · 08 JUN</span>
+    <span class="percent" id="percent1">100% OF THE 100 DAYS</span>
   </div>
 
-  <div class="track" id="track"></div>
+  <div class="bar" id="bar1"></div>
 
-  <div class="ticks" id="ticks"></div>
+  <div class="ticks">
+    <span>0</span><span>10</span><span>20</span>
+    <span>30</span><span>40</span><span>50</span>
+    <span>60</span><span>70</span><span>80</span>
+    <span>90</span><span>100</span>
+  </div>
 
 </div>
 
-<!-- SECOND PROGRESS BAR -->
-
-<div class="progress-wrap">
+<div class="progress">
 
   <div class="progress-head">
-
-    <span class="progress-title">
-      PROGRESS · 16 SEP
-    </span>
-
-    <span class="progress-pct" id="pct2">
-      0% OF THE 100 DAYS
-    </span>
-
+    <span class="progress-title">PROGRESS · 16 SEP</span>
+    <span class="percent" id="percent2">0% OF THE 100 DAYS</span>
   </div>
 
-  <div class="track" id="track2"></div>
+  <div class="bar" id="bar2"></div>
 
-  <div class="ticks" id="ticks2"></div>
+  <div class="ticks">
+    <span>0</span><span>10</span><span>20</span>
+    <span>30</span><span>40</span><span>50</span>
+    <span>60</span><span>70</span><span>80</span>
+    <span>90</span><span>100</span>
+  </div>
 
 </div>
 
 <footer>
 
-  <span class="hint">
+  <div class="hint">
     TAP A BOX TO LOG A WORKOUT · TAP PT FOR A TRAINING SESSION
-  </span>
+  </div>
 
-  <button class="reset" id="reset">
-    RESET
-  </button>
+  <button class="reset" id="reset">RESET</button>
 
 </footer>
 
@@ -604,19 +536,19 @@ button:focus-visible {
 
 <script>
 
-/* ============================
+/* =================================
    SETTINGS
-============================ */
-
-const START = new Date(2026, 5, 8);
-
-const START2 = new Date(2026, 8, 16);
+================================= */
 
 const TOTAL = 100;
 
 const PT_CYCLE = 12;
 
-const KEY = 'workout-tracker-2026-fixed-v1';
+const START1 = new Date(2026, 5, 8);
+
+const START2 = new Date(2026, 8, 16);
+
+const STORAGE_KEY = 'workout-tracker-final-v3';
 
 const DAYS = [
   'Sun','Mon','Tue','Wed','Thu','Fri','Sat'
@@ -633,98 +565,81 @@ const ROMAN = [
 ];
 
 
-/* ============================
-   INITIAL DATA
-============================ */
+/* =================================
+   DATA
 
-/*
-  First challenge:
-  100 completed days.
+   Original challenge is completed.
+   Second challenge starts empty.
+================================= */
 
-  Second challenge:
-  Empty, ready from 16 Sep.
+let workouts1 = new Set();
 
-  PT sessions are empty by default.
-  You can tap PT on any date.
-*/
+let workouts2 = new Set();
 
-let done = new Set(
-  Array.from({length:100}, (_,i)=>i+1)
-);
-
-let pt = new Set();
-
-let done2 = new Set();
+let pt1 = new Set();
 
 let pt2 = new Set();
 
+for(let i=1;i<=100;i++){
 
-/* ============================
-   LOAD SAVED DATA
-============================ */
+  workouts1.add(i);
 
-function load(){
+}
+
+
+/* =================================
+   LOAD SECOND CHALLENGE DATA
+================================= */
+
+function loadData(){
 
   try{
 
-    const raw = localStorage.getItem(KEY);
+    const saved = localStorage.getItem(STORAGE_KEY);
 
-    if(!raw) return;
+    if(!saved) return;
 
-    const p = JSON.parse(raw);
+    const data = JSON.parse(saved);
 
-    if(Array.isArray(p.done)){
+    if(Array.isArray(data.workouts2)){
 
-      done = new Set(p.done);
-
-    }
-
-    if(Array.isArray(p.pt)){
-
-      pt = new Set(p.pt);
+      workouts2 = new Set(
+        data.workouts2.filter(
+          n => Number.isInteger(n) && n >= 101 && n <= 200
+        )
+      );
 
     }
 
-    if(Array.isArray(p.done2)){
+    if(Array.isArray(data.pt2)){
 
-      done2 = new Set(p.done2);
-
-    }
-
-    if(Array.isArray(p.pt2)){
-
-      pt2 = new Set(p.pt2);
+      pt2 = new Set(
+        data.pt2.filter(
+          n => Number.isInteger(n) && n >= 101 && n <= 200
+        )
+      );
 
     }
 
-  }catch(e){
+  }catch(error){
 
-    console.log('Could not load saved data',e);
+    console.log('Starting fresh:',error);
 
   }
 
 }
 
-
-/* ============================
-   SAVE DATA
-============================ */
-
-function save(){
+function saveData(){
 
   try{
 
     localStorage.setItem(
 
-      KEY,
+      STORAGE_KEY,
 
       JSON.stringify({
 
-        done: [...done],
-
-        pt: [...pt],
-
-        done2: [...done2],
+        workouts2: [...workouts2],
 
         pt2: [...pt2]
 
@@ -732,431 +647,385 @@ function save(){
 
     );
 
-  }catch(e){
+  }catch(error){
 
-    console.log('Could not save data',e);
+    console.log('Could not save:',error);
 
   }
 
 }
 
 
-/* ============================
-   TODAY
-============================ */
+/* =================================
+   DATE HELPERS
+================================= */
 
-function todayIndex(){
+function formatDate(date){
 
-  const n = new Date();
-
-  n.setHours(0,0,0,0);
-
-  const s = new Date(START);
-
-  s.setHours(0,0,0,0);
-
-  const diff = Math.round(
-    (n-s)/86400000
-  )+1;
-
-  return diff>=1 && diff<=TOTAL
-    ? diff
-    : null;
+  return DAYS[date.getDay()]+' '+
+    date.getDate()+' '+
+    MONTHS[date.getMonth()];
 
 }
 
-const today = todayIndex();
 
+/* =================================
+   BUILD CALENDARS
+================================= */
 
-/* ============================
-   BUILD CALENDAR
-============================ */
+function buildCalendar(
 
-function buildGrid(
-
-  gridId,
+  elementId,
 
   startDate,
 
-  offset,
+  dayOffset,
 
-  doneSet,
+  workoutSet,
 
   ptSet
 
 ){
 
-  const target =
-    document.getElementById(gridId);
+  const calendar =
+    document.getElementById(elementId);
 
-  if(!target){
-
-    console.error('Grid not found:',gridId);
-
-    return;
-
-  }
+  calendar.innerHTML = '';
 
   for(let i=1;i<=TOTAL;i++){
 
-    const n = i+offset;
+    const globalDay = i+dayOffset;
 
-    const d = new Date(startDate);
+    const date = new Date(startDate);
 
-    d.setDate(
-      startDate.getDate()+(i-1)
+    date.setDate(
+      startDate.getDate()+i-1
     );
 
-    const now = new Date();
+    const today = new Date();
 
-    now.setHours(0,0,0,0);
+    today.setHours(0,0,0,0);
 
-    const cellDate = new Date(d);
+    const cellDate = new Date(date);
 
     cellDate.setHours(0,0,0,0);
 
-    const cell =
-      document.createElement('div');
+    const cell = document.createElement('div');
 
-    cell.className =
-      'cell' +
+    cell.className = 'day';
 
-      (
+    if(
+      today.getTime() ===
+      cellDate.getTime()
+    ){
 
-        now.getTime() ===
-        cellDate.getTime()
+      cell.classList.add('today');
 
-          ? ' today'
+    }
 
-          : ''
+    const dateText = document.createElement('div');
 
-      );
+    dateText.className = 'date';
 
-    cell.innerHTML = `
+    dateText.textContent = formatDate(date);
 
-      <div class="cell-date">
+    cell.appendChild(dateText);
 
-        ${DAYS[d.getDay()]}<br>
+    const workout = document.createElement('button');
 
-        ${d.getDate()} ${MONTHS[d.getMonth()]}
+    workout.type = 'button';
 
-      </div>
+    workout.className = 'workout';
 
-      <button
+    workout.setAttribute(
+      'aria-label',
+      'Workout day '+globalDay
+    );
 
-        class="box"
+    const number = document.createElement('span');
 
-        id="box-${n}"
+    number.className = 'number';
 
-        aria-label="Day ${i}, ${d.getDate()} ${MONTHS[d.getMonth()]}"
+    number.textContent = i;
 
-        type="button"
+    workout.appendChild(number);
 
-      >
+    const pt = document.createElement('button');
 
-        <span class="box-num">
+    pt.type = 'button';
 
-          ${i}
+    pt.className = 'pt';
 
-        </span>
+    pt.textContent = 'PT';
 
-      </button>
+    pt.setAttribute(
+      'aria-label',
+      'PT day '+globalDay
+    );
 
-      <button
+    /* Workout tap */
 
-        class="pt"
+    workout.addEventListener('click',function(){
 
-        id="pt-${n}"
+      if(workoutSet.has(globalDay)){
 
-        aria-label="Personal training day ${i}"
+        workoutSet.delete(globalDay);
 
-        type="button"
+      }else{
 
-      >
+        workoutSet.add(globalDay);
 
-        PT
+      }
 
-      </button>
+      saveData();
 
-    `;
+      render();
 
-    target.appendChild(cell);
+    });
 
+    /* PT tap */
 
-    /* WORKOUT BUTTON */
+    pt.addEventListener('click',function(){
 
-    cell.querySelector('.box')
-      .addEventListener('click',()=>{
+      if(ptSet.has(globalDay)){
 
-        if(doneSet.has(n)){
+        ptSet.delete(globalDay);
 
-          doneSet.delete(n);
+      }else{
 
-          ptSet.delete(n);
+        ptSet.add(globalDay);
 
-        }else{
+        workoutSet.add(globalDay);
 
-          doneSet.add(n);
+      }
 
-        }
+      saveData();
 
-        save();
+      render();
 
-        render();
+    });
 
-      });
+    cell.appendChild(workout);
 
+    cell.appendChild(pt);
 
-    /* PT BUTTON */
-
-    cell.querySelector('.pt')
-      .addEventListener('click',()=>{
-
-        if(ptSet.has(n)){
-
-          ptSet.delete(n);
-
-        }else{
-
-          ptSet.add(n);
-
-          doneSet.add(n);
-
-        }
-
-        save();
-
-        render();
-
-      });
+    calendar.appendChild(cell);
 
   }
 
 }
 
 
-/* ============================
-   LOAD SAVED DATA
-============================ */
-
-load();
-
-
-/* ============================
-   CREATE BOTH CALENDARS
-============================ */
-
-buildGrid(
-  'grid',
-  START,
-  0,
-  done,
-  pt
-);
-
-buildGrid(
-  'grid2',
-  START2,
-  100,
-  done2,
-  pt2
-);
-
-
-/* ============================
+/* =================================
    BUILD PROGRESS BARS
-============================ */
+================================= */
 
-function buildProgress(
+function buildBar(id){
 
-  trackId,
+  const bar = document.getElementById(id);
 
-  ticksId
+  bar.innerHTML = '';
 
-){
+  for(let i=1;i<=TOTAL;i++){
 
-  const track =
-    document.getElementById(trackId);
-
-  for(let i=0;i<TOTAL;i++){
-
-    track.appendChild(
+    bar.appendChild(
       document.createElement('div')
     );
 
   }
 
-  const ticks =
-    document.getElementById(ticksId);
+}
 
-  for(let i=0;i<=10;i++){
 
-    const s =
-      document.createElement('span');
+/* =================================
+   PT DIAL
+================================= */
 
-    s.textContent = i*10;
+function buildDial(){
 
-    ticks.appendChild(s);
+  const dial =
+    document.getElementById('dial');
+
+  dial.innerHTML = '';
+
+  for(let i=0;i<PT_CYCLE;i++){
+
+    const seg = document.createElement('div');
+
+    seg.className = 'seg';
+
+    seg.textContent = ROMAN[i];
+
+    dial.appendChild(seg);
 
   }
 
 }
 
-buildProgress('track','ticks');
 
-buildProgress('track2','ticks2');
+/* =================================
+   RENDER WORKOUT CHECKMARKS
+================================= */
 
+function renderCalendar(
 
-/* ============================
-   PT DIAL
-============================ */
+  elementId,
 
-const dial =
-  document.getElementById('dial');
+  dayOffset,
 
-for(let i=0;i<PT_CYCLE;i++){
+  workoutSet,
 
-  const s =
-    document.createElement('div');
+  ptSet,
 
-  s.className = 'seg';
+  ptSequence
 
-  s.textContent = ROMAN[i];
+){
 
-  dial.appendChild(s);
+  const calendar =
+    document.getElementById(elementId);
+
+  const cells = calendar.children;
+
+  for(let i=0;i<TOTAL;i++){
+
+    const globalDay = i+1+dayOffset;
+
+    const cell = cells[i];
+
+    if(!cell) continue;
+
+    const workout =
+      cell.querySelector('.workout');
+
+    const pt =
+      cell.querySelector('.pt');
+
+    const done =
+      workoutSet.has(globalDay);
+
+    const isPt =
+      ptSet.has(globalDay);
+
+    workout.classList.toggle('done',done);
+
+    pt.classList.toggle('on',isPt);
+
+    if(done){
+
+      if(!workout.querySelector('svg')){
+
+        workout.insertAdjacentHTML(
+
+          'beforeend',
+
+          '<svg viewBox="0 0 24 24" aria-hidden="true">'+
+          '<path class="tick" d="M4 13 L9.5 18.5 L20 5"/>'+
+          '</svg>'
+
+        );
+
+      }
+
+    }else{
+
+      const svg = workout.querySelector('svg');
+
+      if(svg) svg.remove();
+
+    }
+
+    if(isPt){
+
+      pt.textContent =
+        'PT '+ROMAN[(ptSequence[globalDay]-1)%PT_CYCLE];
+
+    }else{
+
+      pt.textContent = 'PT';
+
+    }
+
+  }
 
 }
 
 
-/* ============================
-   RENDER
-============================ */
+/* =================================
+   MAIN RENDER
+================================= */
 
 function render(){
 
-  /* PT SEQUENCES */
-
-  const ptDays =
-    [...pt].sort((a,b)=>a-b);
+  const ptDays1 =
+    [...pt1].sort((a,b)=>a-b);
 
   const ptDays2 =
     [...pt2].sort((a,b)=>a-b);
 
-  const seqMap = {};
+  const sequence1 = {};
 
-  const seqMap2 = {};
+  const sequence2 = {};
 
-  ptDays.forEach((d,i)=>{
+  ptDays1.forEach((day,index)=>{
 
-    seqMap[d] =
-      (i % PT_CYCLE)+1;
-
-  });
-
-  ptDays2.forEach((d,i)=>{
-
-    seqMap2[d] =
-      (i % PT_CYCLE)+1;
+    sequence1[day] =
+      (index%PT_CYCLE)+1;
 
   });
 
+  ptDays2.forEach((day,index)=>{
 
-  /* RENDER ALL BOXES */
+    sequence2[day] =
+      (index%PT_CYCLE)+1;
 
-  for(let n=1;n<=200;n++){
+  });
 
-    const second = n>100;
+  renderCalendar(
+    'calendar1',
+    0,
+    workouts1,
+    pt1,
+    sequence1
+  );
 
-    const doneSet =
-      second ? done2 : done;
+  renderCalendar(
+    'calendar2',
+    100,
+    workouts2,
+    pt2,
+    sequence2
+  );
 
-    const ptSet =
-      second ? pt2 : pt;
 
-    const seq =
-      second ? seqMap2 : seqMap;
+  /* Stats */
 
-    const box =
-      document.getElementById('box-'+n);
+  let current = 0;
 
-    const ptBtn =
-      document.getElementById('pt-'+n);
+  for(let i=100;i>=1;i--){
 
-    if(!box || !ptBtn) continue;
+    if(workouts1.has(i)){
 
-    const isDone =
-      doneSet.has(n);
+      current++;
 
-    box.classList.toggle(
-      'done',
-      isDone
-    );
+    }else{
 
-    const existing =
-      box.querySelector('svg');
-
-    if(isDone && !existing){
-
-      box.insertAdjacentHTML(
-
-        'beforeend',
-
-        `
-
-        <svg viewBox="0 0 24 24"
-             aria-hidden="true">
-
-          <path
-
-            class="tick"
-
-            d="M4 13 L9.5 18.5 L20 5"
-
-          />
-
-        </svg>
-
-        `
-
-      );
-
-    }else if(!isDone && existing){
-
-      existing.remove();
+      break;
 
     }
 
-    const isPt =
-      ptSet.has(n);
-
-    ptBtn.classList.toggle(
-      'on',
-      isPt
-    );
-
-    ptBtn.textContent = isPt
-      ? 'PT '+ROMAN[(seq[n]-1) % PT_CYCLE]
-      : 'PT';
-
   }
-
-
-  /* FIRST CHALLENGE STATS */
 
   let best = 0;
 
   let run = 0;
 
-  for(let i=1;i<=TOTAL;i++){
+  for(let i=1;i<=100;i++){
 
-    if(done.has(i)){
+    if(workouts1.has(i)){
 
       run++;
 
-      best = Math.max(
-        best,
-        run
-      );
+      best = Math.max(best,run);
 
     }else{
 
@@ -1166,214 +1035,111 @@ function render(){
 
   }
 
-  let cur = 0;
+  document.getElementById('total').textContent =
+    workouts1.size;
 
-  let anchor =
-    today || TOTAL;
+  document.getElementById('current').textContent =
+    current;
 
-  while(
+  document.getElementById('best').textContent =
+    best;
 
-    anchor>=1 &&
+  document.getElementById('ptTotal').textContent =
+    pt1.size + pt2.size;
 
-    !done.has(anchor)
 
-  ){
+  /* PT cycle */
 
-    anchor--;
-
-  }
-
-  let c = anchor;
-
-  while(
-
-    c>=1 &&
-
-    done.has(c)
-
-  ){
-
-    cur++;
-
-    c--;
-
-  }
-
-  const ptTotal =
-    ptDays.length;
-
-  const cyclesDone =
-    Math.floor(
-      ptTotal/PT_CYCLE
-    );
+  const totalPT =
+    pt1.size + pt2.size;
 
   const inCycle =
-    ptTotal%PT_CYCLE;
+    totalPT%PT_CYCLE;
 
-  document.getElementById(
-    's-total'
-  ).textContent = done.size;
+  const cycles =
+    Math.floor(totalPT/PT_CYCLE);
 
-  document.getElementById(
-    's-cur'
-  ).textContent = cur;
+  document.getElementById('cycleTitle').textContent =
+    'PT CYCLE '+(cycles+1);
 
-  document.getElementById(
-    's-best'
-  ).textContent = best;
+  const dial =
+    document.getElementById('dial');
 
-  document.getElementById(
-    's-pt'
-  ).textContent = ptTotal;
+  [...dial.children].forEach((seg,index)=>{
 
-  document.getElementById(
-    'cycle-label'
-  ).textContent =
-    'PT CYCLE '+(cyclesDone+1);
-
-  [...dial.children].forEach(
-
-    (el,i)=>{
-
-      el.classList.toggle(
-        'on',
-        i<inCycle
-      );
-
-    }
-
-  );
-
-  document.getElementById(
-    'cycle-text'
-  ).innerHTML = `
-
-    <span class="cycle-big">
-
-      ${inCycle}
-
-    </span>
-
-    / ${PT_CYCLE} in this cycle ·
-
-    ${PT_CYCLE-inCycle} to go
-
-    <br>
-
-    <span style="color:#aaa">
-
-      ${cyclesDone} full
-
-      ${cyclesDone===1?'cycle':'cycles'}
-
-      completed
-
-    </span>
-
-  `;
-
-
-  /* FIRST PROGRESS BAR */
-
-  [
-
-    ...document.getElementById(
-      'track'
-    ).children
-
-  ].forEach((el,i)=>{
-
-    el.classList.toggle(
-
-      'filled',
-
-      done.has(i+1)
-
+    seg.classList.toggle(
+      'on',
+      index<inCycle
     );
 
   });
 
-  document.getElementById(
-    'pct'
-  ).textContent =
-    done.size+'% OF THE 100 DAYS';
+  document.getElementById('cycleText').innerHTML =
+    '<span class="cycle-number">'+inCycle+'</span>'+
+    ' / '+PT_CYCLE+' in this cycle · '+
+    (PT_CYCLE-inCycle)+' to go<br>'+
+    '<span style="color:#aaa">'+
+    cycles+' full cycle'+
+    (cycles===1?'':'s')+
+    ' completed</span>';
 
 
-  /* SECOND PROGRESS BAR */
+  /* First progress bar */
 
-  const done2Count =
-    [...done2].filter(
+  const bar1 =
+    document.getElementById('bar1');
 
-      n=>n>=101 && n<=200
+  [...bar1.children].forEach((segment,index)=>{
 
-    ).length;
-
-  [
-
-    ...document.getElementById(
-      'track2'
-    ).children
-
-  ].forEach((el,i)=>{
-
-    el.classList.toggle(
-
+    segment.classList.toggle(
       'filled',
-
-      done2.has(i+101)
-
+      workouts1.has(index+1)
     );
 
   });
 
-  document.getElementById(
-    'pct2'
-  ).textContent =
-    done2Count+'% OF THE 100 DAYS';
+  document.getElementById('percent1').textContent =
+    workouts1.size+'% OF THE 100 DAYS';
 
 
-  /* STATUS */
+  /* Second progress bar */
 
-  document.getElementById(
-    'status'
-  ).textContent =
+  const bar2 =
+    document.getElementById('bar2');
 
-    today
+  [...bar2.children].forEach((segment,index)=>{
 
-      ? 'TODAY · DAY '+today
+    segment.classList.toggle(
+      'filled',
+      workouts2.has(index+101)
+    );
 
-      : 'OUTSIDE THE 100 DAYS';
+  });
+
+  document.getElementById('percent2').textContent =
+    workouts2.size+'% OF THE 100 DAYS';
 
 }
 
 
-/* ============================
+/* =================================
    RESET
-============================ */
 
-document.getElementById(
-  'reset'
-).addEventListener('click',()=>{
+   Reset only the second challenge.
+================================= */
 
-  if(
+document.getElementById('reset')
+.addEventListener('click',function(){
 
-    confirm(
+  if(confirm(
+    'Reset the second 100-day challenge?'
+  )){
 
-      "Clear every workout and PT mark? This can't be undone."
-
-    )
-
-  ){
-
-    done = new Set();
-
-    pt = new Set();
-
-    done2 = new Set();
+    workouts2 = new Set();
 
     pt2 = new Set();
 
-    save();
+    saveData();
 
     render();
 
@@ -1382,59 +1148,37 @@ document.getElementById(
 });
 
 
-/* ============================
-   APP MANIFEST
-============================ */
+/* =================================
+   START APP
+================================= */
 
-const iconSVG = `
+loadData();
 
-<svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 512 512">
+buildCalendar(
+  'calendar1',
+  START1,
+  0,
+  workouts1,
+  pt1
+);
 
-  <rect width="512" height="512"
-        rx="90" fill="#12253f"/>
+buildCalendar(
+  'calendar2',
+  START2,
+  100,
+  workouts2,
+  pt2
+);
 
-  <path d="M128 262 L214 348 L392 156"
-        fill="none"
-        stroke="#ffffff"
-        stroke-width="44"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
+buildBar('bar1');
 
-</svg>
+buildBar('bar2');
 
-`;
+buildDial();
 
-const iconURL =
-  'data:image/svg+xml;charset=utf-8,' +
-  encodeURIComponent(iconSVG);
+render();
 
-const manifest = {
+</script>
 
-  name: 'Workout Tracker 2026',
-
-  short_name: 'Workout Tracker',
-
-  start_url: './',
-
-  scope: './',
-
-  display: 'standalone',
-
-  background_color: '#ffffff',
-
-  theme_color: '#12253f',
-
-  icons: [
-
-    {
-
-      src: iconURL,
-
-      sizes: '512x512',
-
-      type: 'image/svg+xml',
-
-      purpose: 'any maskable'
-
- 
+</body>
+</html>
